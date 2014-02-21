@@ -1,5 +1,2 @@
-jdoe@example.com,+10005551234
-mstar@example.com,+10005555678
 wwhite@example.com,+10005559012
 dwinchester@example.com,+10005553456
-swinchester@example.com,+10005557890
