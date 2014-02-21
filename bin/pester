@@ -31,7 +31,7 @@ begin
   raise OptionParser::MissingArgument.new("--file") unless options[:filename]
   raise "Unable to find employee file named #{options[:filename]}" unless File.exist?(options[:filename])
 
-  Pester.adapters[:employees]       = Pester::Adapters::CsvFile.new(options[:filename])
+  Pester.adapters[:employees]       = Pester::Adapters::EmployeeCsvMapper.new(options[:filename])
   Pester.adapters[:logger]          = Logger.new(STDOUT)
   Pester.adapters[:message_service] = Pester::Adapters::Twilio.new(ENV["ACCOUNT_SID", ENV["AUTH_TOKEN"])
   Pester.adapters[:time_source]     = Pester::Adapters::Harvest.new(ENV["SUBDOMAIN"], ENV["USERNAME"], ENV["PASSWORD"])
