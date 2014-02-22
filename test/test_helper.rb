@@ -1,6 +1,9 @@
 require "bundler/setup"
 require "test/unit"
 require "contest"
+require "dotenv"
+
+Dotenv.load
 
 class Test::Unit::TestCase
   # Syntactic sugar for defining a memoized helper method.
