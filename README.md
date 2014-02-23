@@ -1,8 +1,12 @@
 # Pester
+[![Dependency Status](https://gemnasium.com/bnadlerjr/pester.png)](https://gemnasium.com/bnadlerjr/pester)
+[![Code Climate](https://codeclimate.com/github/bnadlerjr/pester.png)](https://codeclimate.com/github/bnadlerjr/pester)
+
 > "Totally not an hours reminder... I lied." - Robert Smith
+
 Pesters people to enter hours in Harvest.
 
-Given a list of email addresses, it checks Harvest to see that each user has at least 40 hours entered into Harvest for the previous week. If the person doesn't, it sends them a message.
+Given a list of email addresses, it checks Harvest to see that each user has at least 40 hours entered into Harvest for the previous week. If the person doesn't, it sends them an SMS message via Twilio.
 
 The list of email addresses and phone numbers are retrieved from a CSV file. See the `test/data/employees.txt` file for a sample of what the file needs to look like.
 
@@ -53,7 +57,7 @@ The idea for using these categories and the table above are from this [blog post
 ### Project Architecture
 This project uses a [Ports and Adapters](http://alistair.cockburn.us/Hexagonal+architecture) architecture. Domain classes are located in `lib/pester`. Adapters are located in `lib/pester/adapters`.
 
-### / Roadmap
+### Roadmap
 
 Use [GitHub issues](http://github.com/bnadlerjr/pester/issues) for reporting bug and feature requests.
 
