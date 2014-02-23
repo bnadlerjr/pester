@@ -1,7 +1,7 @@
 module Pester
   class SendMessage
     THRESHOLD = 39
-    attr_reader :end_on, :employees, :message_service, :time_source
+    attr_reader :end_on, :employees, :message_service, :time_source, :log
 
     def self.call(date)
       new(date).call
@@ -13,16 +13,20 @@ module Pester
       @employees = options.fetch(:employees) { Pester.adapters[:employees] }
       @message_service = options.fetch(:message_service) { Pester.adapters[:messages] }
       @time_source = options.fetch(:time_source) { Pester.adapters[:time_source] }
+      @log = options.fetch(:log) { Pester.adapters[:log] }
     end
 
     def call
       employees.each do |emp|
         hours = time_source.hours_for(emp.email, end_on)
-        message_service.deliver({
-          to: emp.phone,
-          from: ENV["FROM_PHONE"],
-          body: msg
-        }) if hours.between?(0, THRESHOLD)
+        if hours.between?(0, THRESHOLD)
+          message_service.deliver({
+            to: emp.phone,
+            from: ENV["FROM_PHONE"],
+            body: msg
+          })
+          log.info("Sent message to #{emp.email} (#{emp.phone})")
+        end
       end
     end
 

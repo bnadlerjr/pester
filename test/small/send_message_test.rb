@@ -1,4 +1,6 @@
 require "date"
+require "logger"
+require "stringio"
 require_relative "../test_helper"
 require_relative "../../lib/pester"
 
@@ -6,6 +8,7 @@ module Pester
   class SendMessageTest < Test::Unit::TestCase
     let(:message_service) { FakeMessageService.new }
     let(:time_source) { FakeTimeSource.new }
+    let(:log_stream) { StringIO.new }
 
     setup do
       ENV["FROM_PHONE"] = "+10005550000"
@@ -14,11 +17,15 @@ module Pester
     test "successfully send message" do
       employees = [Employee.new(email: "jdoe@example.com", phone: "+10005551234")]
       build_send_message_command(employees).call
+
       assert_equal([{
         to: "+10005551234",
         from: "+10005550000",
         body: "Hi there! It looks like you haven't entered all your hours into Harvest for the week ending 2014-02-15. Please log in to Harvest and enter your hours!"
       }], message_service.deliveries)
+
+      log_stream.rewind
+      assert(/Sent message to jdoe@example\.com/ =~ log_stream.entries.join(""))
     end
 
     test "does not send message if hours are greater than or equal to threshold" do
@@ -40,7 +47,8 @@ module Pester
         Date.new(2014, 2, 20),
         employees: employees,
         message_service: message_service,
-        time_source: time_source
+        time_source: time_source,
+        log: Logger.new(log_stream)
       )
     end
 
