@@ -1,6 +1,3 @@
-require "csv"
-require_relative "../employee"
-
 module Pester
   module Adapters
     class EmployeeCsvMapper

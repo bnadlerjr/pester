@@ -1,5 +1,7 @@
 require_relative "../test_helper"
 require_relative "../../lib/pester/adapters/employee_csv_mapper"
+require_relative "../../lib/pester/employee"
+require "csv"
 
 module Pester
   module Adapters
