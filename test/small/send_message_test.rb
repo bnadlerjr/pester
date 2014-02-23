@@ -45,10 +45,10 @@ module Pester
     end
 
     class FakeTimeSource
-      def hours_for(employee, end_on)
+      def hours_for(email, end_on)
         raise "wrong end_on date" unless Date.new(2014, 2, 15) == end_on
-        return 35.0 if "jdoe@example.com" == employee.email
-        return 40.0 if "jsmith@example.com" == employee.email
+        return 35.0 if "jdoe@example.com" == email
+        return 40.0 if "jsmith@example.com" == email
       end
     end
   end

@@ -13,7 +13,7 @@ module Pester
 
     def call
       employees.each do |emp|
-        hours = time_source.hours_for(emp, end_on)
+        hours = time_source.hours_for(emp.email, end_on)
         message_service.deliver({
           to: emp.phone,
           from: ENV["FROM_PHONE"],
