@@ -3,10 +3,7 @@ require "test/unit"
 require "contest"
 require "dotenv"
 
-Dotenv.load(
-  File.expand_path("../../.env", __FILE__),
-  File.expand_path("../../test.env", __FILE__)
-)
+Dotenv.load(File.expand_path("../../test.env", __FILE__))
 
 class Test::Unit::TestCase
   # Syntactic sugar for defining a memoized helper method.

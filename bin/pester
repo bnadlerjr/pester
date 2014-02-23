@@ -7,7 +7,7 @@ require "optparse"
 
 require_relative "../lib/pester"
 
-Dotenv.load
+Dotenv.load(File.expand_path("../../prod.env"))
 
 options = {}
 
@@ -33,8 +33,8 @@ begin
 
   Pester.adapters[:employees]       = Pester::Adapters::EmployeeCsvMapper.new(options[:filename])
   Pester.adapters[:logger]          = Logger.new(STDOUT)
-  Pester.adapters[:message_service] = Pester::Adapters::Twilio.new(ENV["ACCOUNT_SID", ENV["AUTH_TOKEN"])
-  Pester.adapters[:time_source]     = Pester::Adapters::Harvest.new(ENV["SUBDOMAIN"], ENV["USERNAME"], ENV["PASSWORD"])
+  Pester.adapters[:message_service] = Pester::Adapters::Twilio.new(ENV["TWILIO_ACCOUNT_SID", ENV["TWILIO_AUTH_TOKEN"])
+  Pester.adapters[:time_source]     = Pester::Adapters::Harvest.new(ENV["HARVEST_SUBDOMAIN"], ENV["HARVEST_USERNAME"], ENV["HARVEST_PASSWORD"])
 
   Pester::SendMessage.call(Date.today)
 
