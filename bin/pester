@@ -7,7 +7,7 @@ require "optparse"
 
 require_relative "../lib/pester"
 
-Dotenv.load(File.expand_path("../../prod.env"))
+Dotenv.load(File.expand_path("../../prod.env", __FILE__))
 
 options = {}
 
