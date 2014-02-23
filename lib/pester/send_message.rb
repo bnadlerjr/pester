@@ -3,6 +3,10 @@ module Pester
     THRESHOLD = 40.0
     attr_reader :end_on, :employees, :message_service, :time_source
 
+    def self.call(date)
+      new(date).call
+    end
+
     def initialize(date, **options)
       date = date.prev_day until date.saturday?
       @end_on = date
