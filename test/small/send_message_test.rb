@@ -1,7 +1,6 @@
 require "date"
 require_relative "../test_helper"
-require_relative "../../lib/pester/send_message"
-require_relative "../../lib/pester/employee"
+require_relative "../../lib/pester"
 
 module Pester
   class SendMessageTest < Test::Unit::TestCase

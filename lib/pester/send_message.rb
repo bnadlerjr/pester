@@ -6,9 +6,9 @@ module Pester
     def initialize(date, **options)
       date = date.prev_day until date.saturday?
       @end_on = date
-      @employees = options.fetch(:employees)
-      @message_service = options.fetch(:message_service)
-      @time_source = options.fetch(:time_source)
+      @employees = options.fetch(:employees) { Pester.adapters[:employees] }
+      @message_service = options.fetch(:message_service) { Pester.adapters[:messages] }
+      @time_source = options.fetch(:time_source) { Pester.adapters[:time_source] }
     end
 
     def call

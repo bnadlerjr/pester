@@ -6,7 +6,7 @@ module Pester
       def initialize(account_sid, auth_token, **opts)
         @client = ::Twilio::REST::Client.new(account_sid, auth_token)
         @deliveries = []
-        @log = opts.fetch(:log)
+        @log = opts.fetch(:log) { Pester.adapters[:log] }
       end
 
       def deliver(**args)
