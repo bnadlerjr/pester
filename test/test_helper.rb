@@ -3,7 +3,9 @@ require "test/unit"
 require "contest"
 require "dotenv"
 
-Dotenv.load(File.expand_path("../../test.env", __FILE__))
+test_env_filename = File.expand_path("../../test.env", __FILE__)
+raise "You need to create a test.env file." unless File.exist?(test_env_filename)
+Dotenv.load(test_env_filename)
 
 class Test::Unit::TestCase
   # Syntactic sugar for defining a memoized helper method.
