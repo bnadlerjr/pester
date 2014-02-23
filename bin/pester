@@ -31,7 +31,7 @@ begin
   raise OptionParser::MissingArgument.new("--file") unless options[:filename]
   raise "Unable to find employee file named #{options[:filename]}" unless File.exist?(options[:filename])
 
-  %w[TWILIO_ACCOUNT_SID TWILIO_AUTH_TOKEN HARVEST_SUBDOMAIN HARVEST_USERNAME HARVEST_PASSWORD].each do |env|
+  %w[FROM_PHONE TWILIO_ACCOUNT_SID TWILIO_AUTH_TOKEN HARVEST_SUBDOMAIN HARVEST_USERNAME HARVEST_PASSWORD].each do |env|
     raise "#{env} has not been set" unless ENV[env]
   end
 
