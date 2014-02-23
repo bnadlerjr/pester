@@ -1,6 +1,6 @@
 module Pester
   class SendMessage
-    THRESHOLD = 40.0
+    THRESHOLD = 39
     attr_reader :end_on, :employees, :message_service, :time_source
 
     def self.call(date)
@@ -22,7 +22,7 @@ module Pester
           to: emp.phone,
           from: ENV["FROM_PHONE"],
           body: msg
-        }) if hours < THRESHOLD
+        }) if hours.between?(0, THRESHOLD)
       end
     end
 

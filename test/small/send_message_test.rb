@@ -27,6 +27,12 @@ module Pester
       assert_equal([], message_service.deliveries)
     end
 
+    test "does not send message if there was an error retrieving hours" do
+      employees = [Employee.new(email: "no_such_email", phone: "+10005559876")]
+      build_send_message_command(employees).call
+      assert_equal([], message_service.deliveries)
+    end
+
     private
 
     def build_send_message_command(employees)
@@ -49,6 +55,7 @@ module Pester
         raise "wrong end_on date" unless Date.new(2014, 2, 15) == end_on
         return 35.0 if "jdoe@example.com" == email
         return 40.0 if "jsmith@example.com" == email
+        return -1 if "no_such_email" == email
       end
     end
   end
