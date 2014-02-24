@@ -23,7 +23,7 @@ Options:
 ```
 
 ## Setup
-Requires a Ruby interpreter. The version is specified in the `Gemfile`. [Bundler](http://bundler.io/) is used to manage dependencies. Install them via `bundle install`.
+Requires Ruby. The version is specified in the `Gemfile`. [Bundler](http://bundler.io/) is used to manage dependencies. Install them via `bundle install`.
 
 The [Dotenv](https://github.com/bkeepers/dotenv) gem is used to load the environment variables from an environment file named `prod.env`. The environment file must set the following variables:
 * HARVEST_SUBDOMAIN
@@ -53,6 +53,9 @@ Tests are organized into three categories: small, medium and large. A test is as
 | System properties    | No    | Yes            | Yes   |
 
 The idea for using these categories and the table above are from this [blog post](http://googletesting.blogspot.com/2010/12/test-sizes.html).
+
+*Special note:
+Unfortunately, Harvest does not provide a sandbox account for testing. The Harvest tests have a hard-coded email address and hours total for a specific week. If you are adapting this for your own use, you will need to update the email address and hours total to reflect a specific user for your own Harvest instance.*
 
 ### Project Architecture
 This project uses a [Ports and Adapters](http://alistair.cockburn.us/Hexagonal+architecture) architecture. Domain classes are located in `lib/pester`. Adapters are located in `lib/pester/adapters`.
