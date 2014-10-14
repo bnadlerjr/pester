@@ -64,7 +64,7 @@ module Pester
         return 35.0 if "jdoe@example.com" == email
         return 40.0 if "jsmith@example.com" == email
         return -1 if "no_such_email" == email
-        raise "You sent FakeTimeSource and email it doesn't recognize! (#{email})"
+        raise "You sent FakeTimeSource an email it doesn't recognize! (#{email})"
       end
     end
   end
