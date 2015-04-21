@@ -1,4 +1,5 @@
 require "rake/testtask"
+require "flog_task"
 
 task :default => "test:all"
 
@@ -14,4 +15,8 @@ namespace :test do
 
   desc "Run all tests"
   task :all => test_sizes.map { |s| "test:#{s}" }
+end
+
+FlogTask.new do |t|
+  t.dirs = %w[lib]
 end
