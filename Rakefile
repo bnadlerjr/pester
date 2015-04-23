@@ -1,4 +1,5 @@
 require "rake/testtask"
+require "flay_task"
 require "flog_task"
 
 task :default => "test:all"
@@ -18,5 +19,9 @@ namespace :test do
 end
 
 FlogTask.new do |t|
+  t.dirs = %w[lib]
+end
+
+FlayTask.new do |t|
   t.dirs = %w[lib]
 end
