@@ -1,6 +1,7 @@
 require "rake/testtask"
 require "flay_task"
 require "flog_task"
+require "reek/rake/task"
 
 task :default => "test:all"
 
@@ -24,4 +25,9 @@ end
 
 FlayTask.new do |t|
   t.dirs = %w[lib]
+end
+
+Reek::Rake::Task.new do |t|
+  t.fail_on_error = true
+  t.verbose = false
 end
