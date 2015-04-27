@@ -97,12 +97,11 @@ UncommunicativeParameterName:
 UncommunicativeVariableName:
   enabled: true
   exclude: []
+  accept: [k, v]
   reject:
   - !ruby/regexp /^.$/
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
-  accept:
-  - _
 UnusedParameters:
   enabled: true
   exclude: []
