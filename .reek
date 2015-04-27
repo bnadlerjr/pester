@@ -19,7 +19,7 @@ DataClump:
 DuplicateMethodCall:
   enabled: true
   exclude: []
-  max_calls: 1
+  max_calls: 2
   allow_calls: []
 FeatureEnvy:
   enabled: true
