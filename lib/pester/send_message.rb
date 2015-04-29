@@ -10,10 +10,10 @@ module Pester
     def initialize(date, **options)
       date = date.prev_day until date.saturday?
       @end_on = date
-      @employees = options.fetch(:employees) { Pester.adapters[:employees] }
-      @message_service = options.fetch(:message_service) { Pester.adapters[:messages] }
-      @time_source = options.fetch(:time_source) { Pester.adapters[:time_source] }
-      @log = options.fetch(:log) { Pester.adapters[:log] }
+      @employees = options.fetch(:employees) { adapters[:employees] }
+      @message_service = options.fetch(:message_service) { adapters[:messages] }
+      @time_source = options.fetch(:time_source) { adapters[:time_source] }
+      @log = options.fetch(:log) { adapters[:log] }
     end
 
     def call
@@ -31,6 +31,10 @@ module Pester
     end
 
     private
+
+    def adapters
+      @adapters ||= Pester.adapters
+    end
 
     def msg
       <<-TEXT.gsub /(^\s*|\n)/, ""
